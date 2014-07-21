@@ -1,4 +1,8 @@
 Touching_Melody_tmp
 ===================
 
-This is a temporary repository for Touching Melody project. It lacks complete automated build, README &amp; AUTHOR documentation, definite LICENSE and coding-style regulation. Note that it will be deleted (or renamed) after sumitting a formal version.
+This project can only be built on Windows so far. Please install:
+1. MinGW compiler g++ (run.bat supports mingw-w64 with win32 thread, dwarf exception model, revision 2)
+2. Microsoft Speech SDK (SAPI)
+3. libmusicxml: http://code.google.com/p/libmusicxml/
+   Note: Please rebuild it using your own compiler.
