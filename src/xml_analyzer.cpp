@@ -790,7 +790,11 @@ void XMLAnalyzer::analyze_slur() throw(){
     trait.nptr=s;
     if(q!=r){
      if(trait.nptr==q->nptr) q++;
-     else if(q->type!=TYPE_START) q=p->path.insert(q, trait)+1;
+     else if(q->type!=TYPE_START){
+      size_t r_position=r-p->path.begin();
+      q=p->path.insert(q, trait)+1;
+      r=p->path.begin()+r_position+1;
+     }
     }
     else if((q-1)->type!=TYPE_STOP) r=q=p->path.insert(q, trait)+1;
    }
