@@ -238,7 +238,8 @@ void MidiCommandVector::add_note(const bms_note& center, const midi_instrument_m
   if(!center.release_set()) range[1]=begin+range[2];
   add_pitch(message, range[0], range[1], center._measure(), center.tied_type());
   for(const bms_note* j=center.next_chord(); j!=NULL; j=j->next_chord()){
-   range[0]=begin+(j->attack_set() ?(j->attack()*factor):(j->arpeggiate_order()*j->duration()*factor*default_grace/100))+grace_time[0];
+   if(j->attack_set()) range[0]=begin+j->attack()*factor;
+   else range[0]=(center.prefix() ? grace_time[0] : begin)+j->arpeggiate_order()*j->duration()*factor*default_grace/100;
    range[2]=j->duration()*factor-grace_time[1];
    range[1]=begin+range[2];
    if(j->release_set()) range[1]+=j->release()*factor;
